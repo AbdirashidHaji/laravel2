@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 
 class RoleController extends Controller
-{
+{   
     
     public function index()
     {

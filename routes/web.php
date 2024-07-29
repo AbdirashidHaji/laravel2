@@ -5,9 +5,15 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\JobPostingController;
+use App\Http\Controllers\ApplicationController;
+
+Route::resource('job-postings', JobPostingController::class);
+
+Route::post('job-postings/{jobPosting}/apply', [ApplicationController::class, 'store'])->name('applications.store');
 
 
-
+Route::resource('job-postings', JobPostingController::class);
 Route::resource('permissions', PermissionController::class);
 Route::get('permissions/{permissionId}/delete', [App\Http\Controllers\PermissionController::class, 'destroy']);
 
