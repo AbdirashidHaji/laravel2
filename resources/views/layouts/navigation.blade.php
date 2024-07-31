@@ -26,11 +26,15 @@
                         {{ __('Permissions') }}
                     </x-nav-link>
                     <x-nav-link :href="url('job-postings')" :active="request()->routeIs('job-postings.*')">
-                        {{ __('Job Postings') }}
+                        {{ __('Jobs') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('portfolios')" :active="request()->routeIs('portfolios')">
-                        {{ __('Portfolios') }}
-                    </x-nav-link>
+                    <x-nav-link :href="url('portfolio')" :active="request()->routeIs('portfolio.show')">
+    {{ __('Portfolios') }}
+</x-nav-link>
+
+                    <x-nav-link :href="url('job-applications')" :active="request()->routeIs('job-applications.*')">
+                {{ __('Job Applications') }}
+            </x-nav-link>
                 </div>
             </div>
 
@@ -96,8 +100,11 @@
             <x-responsive-nav-link :href="url('job-postings')" :active="request()->routeIs('job-postings.*')">
                 {{ __('Job Postings') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="url('portfolios')" :active="request()->routeIs('portfolios')">
-                {{ __('Portfolios') }}
+            <x-responsive-nav-link :href="url('job-applications')" :active="request()->routeIs('job-applications.*')">
+               {{ __('Applications') }}
+             </x-responsive-nav-link>
+            <!-- <x-responsive-nav-link :href="url('portfolios')" :active="request()->routeIs('portfolios')">
+                {{ __('Portfolios') }} -->
             </x-responsive-nav-link>
         </div>
 

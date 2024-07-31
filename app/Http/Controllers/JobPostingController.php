@@ -7,8 +7,21 @@ use App\Models\JobPosting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+
 class JobPostingController extends Controller
-{
+{  
+
+    // public static function middleware(): array
+    // {   return[
+    //     new middleware('job:view job', only : ['index']),
+    //     new middleware('job:create job', only : ['create','store']),
+    //     new middleware('job:update job', only : ['update','edit']),
+    //     new middleware('job:delete job', only : ['destroy']),
+    //   ];
+    // }
     public function index()
     {
         $jobPostings = JobPosting::with('user')->get();
