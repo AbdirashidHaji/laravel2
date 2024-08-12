@@ -22,20 +22,13 @@ Route::resource('job-applications', JobApplicationController::class);
    
 // Route to show the job application form
 Route::get('job-postings/{jobPosting}/apply', [JobApplicationController::class, 'create'])->name('applications.create');
-
-// Route to handle job application submission
 Route::post('job-postings/{jobPosting}/apply', [JobApplicationController::class, 'store'])->name('applications.store');
-
-// Route to show the job application form
 Route::get('job-postings/{jobPosting}/apply', [JobApplicationController::class, 'create'])->name('applications.create');
-
-// Route to handle job application submission
 Route::post('job-postings/{jobPosting}/apply', [JobApplicationController::class, 'store'])->name('applications.store');
 // Routes for roles, permissions, users, and job postings with role-based middleware
-Route::middleware(['role:super-admin|admin'])->group(function(){
+Route::middleware(['auth'])->group(function(){
     Route::resource('permissions', PermissionController::class);
     Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
-
     Route::resource('roles', RoleController::class);
     Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
     Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
