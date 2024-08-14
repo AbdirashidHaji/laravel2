@@ -4,8 +4,18 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
+        
+    <div class="py-4">
+        <div class="container">
+            <div class="bg-light shadow-sm rounded">
+                <div class="p-4 text-center">
+                    <h3 class="text-primary">{{ __('Welcome to Your Dashboard!') }}</h3>
+                    <p class="fs-5 text-muted">{{ __("We're excited to have you here. Explore the latest job opportunities tailored just for you!") }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    @hasrole('admin|superadmin')
     <div class="py-4">
         <div class="container">
             <div class="row">
@@ -63,30 +73,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    @else
-    <div class="py-4">
-        <div class="container">
-            <div class="bg-light shadow-sm rounded">
-                <div class="p-4 text-center">
-                    <h3 class="text-primary">{{ __('Welcome to Your Dashboard!') }}</h3>
-                    <p class="fs-5 text-muted">{{ __("We're excited to have you here. Explore the latest job opportunities tailored just for you!") }}</p>
-                </div>
-            </div>
 
             <div class="row mt-4">
-                <!-- Jobs -->
-                <div class="col-md-6 mb-4">
-                    <div class="bg-success text-white shadow-sm rounded p-4">
-                        <x-nav-link :href="url('job-postings')" :active="request()->routeIs('job-postings.*')" class="text-white">
-                            <h4>{{ __('Explore Jobs') }}</h4>
-                            <p>{{ __('Find your next career move with our curated job listings.') }}</p>
-                        </x-nav-link>
-                    </div>
-                </div>
-
-                <!-- Featured Companies -->
+                <!-- Top Companies -->
                 <div class="col-md-6 mb-4">
                     <div class="bg-info text-white shadow-sm rounded p-4">
                         <h4>{{ __('Top Companies') }}</h4>
@@ -102,15 +91,29 @@
                     </div>
                 </div>
 
+                <!-- Newsletter -->
+                <div class="col-md-6 mb-4">
+                    <div class="bg-info text-white shadow-sm rounded p-4">
+                        <h4>{{ __('Newsletter') }}</h4>
+                        <p>{{ __('Subscribe to our newsletter to receive the latest updates, news, and exclusive offers directly in your inbox.') }}</p>
+                        <form action="{{ url('subscribe') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="Your email address" required>
+                            </div>
+                            <button type="submit" class="btn btn-light">{{ __('Subscribe') }}</button>
+                        </form>
+                    </div>
+                </div>
+
                 <!-- Personal Growth -->
                 <div class="col-md-6 mb-4">
                     <div class="bg-primary text-white shadow-sm rounded p-4">
                         <h4>{{ __('Personal Growth') }}</h4>
-                        <p>{{ __('Explore resources and courses to help you grow both professionally and personally.') }}</p>
+                        <p>{{ __('Explore a wide range of resources and courses designed to enhance both your professional and personal development. Whether you’re looking to acquire new skills, pursue advanced certifications, or simply gain more knowledge in your field, we offer curated content that caters to your growth. Our platform provides access to expert-led workshops, insightful webinars, and comprehensive learning materials that are tailored to help you achieve your goals and unlock your full potential.') }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @endhasrole
 </x-app-web-layout>

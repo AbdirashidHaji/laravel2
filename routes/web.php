@@ -8,6 +8,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\SubscriptionController;
 
 // Routes for job applications with authentication middleware
 Route::middleware(['auth'])->group(function () {
@@ -66,4 +67,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//newsletter
+Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 require __DIR__.'/auth.php';
